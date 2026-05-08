@@ -5,13 +5,17 @@
 import './index.css'
 // import CustomInput from "./components/shared/CustomInput";
 import CompoC from "./components/CompoC";
+import State from './components/State';
 
 
 const App = () => {
-  let userName = 'majid';
+  
 
   return (
-    <CompoC userName={userName} />
+    // <CompoC userName={userName} />
+    <div>
+      <State />
+    </div>
   );
 };
 

@@ -1,111 +1,403 @@
-/* :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+/* =========================
+   GOOGLE FONT
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
+/* =========================
+   GLOBAL
+========================= */
+*{
   margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+  padding: 0;
   box-sizing: border-box;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
+body{
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  background: #151515;
+
+  /* Pencil Shade Texture */
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.025) 0px,
+      rgba(255,255,255,0.025) 2px,
+      transparent 2px,
+      transparent 7px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0,0,0,0.15) 0px,
+      rgba(0,0,0,0.15) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+
+  animation: bgMove 18s linear infinite;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.main{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+.glow1{
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.35;
+  top: -120px;
+  left: -120px;
+  animation: glowMove 7s ease-in-out infinite;
+}
+
+.glow2{
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: #ec4899;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.3;
+  bottom: -120px;
+  right: -120px;
+  animation: glowMove 7s ease-in-out infinite reverse;
+}
+
+/* =========================
+   CARD
+========================= */
+.card{
+  width: 430px;
+  padding: 45px 35px;
+  border-radius: 32px;
+
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(18,18,30,0.82);
+  backdrop-filter: blur(22px);
+
+  text-align: center;
+  z-index: 10;
+
+  transition: 0.45s ease;
+
+  box-shadow:
+    0 0 25px rgba(168,85,247,0.5),
+    0 0 60px rgba(236,72,153,0.35);
+}
+
+/* =========================
+   NEON GRADIENT BORDER
+========================= */
+.card::before{
+  content: "";
+  position: absolute;
+
+  inset: -6px;
+
+  border-radius: 38px;
+
+  background: conic-gradient(
+    from 0deg,
+    #8b5cf6,
+    #ec4899,
+    #06b6d4,
+    #3b82f6,
+    #8b5cf6
+  );
+
+  animation: rotateBorder 4s linear infinite;
+
+  z-index: -2;
+
+  filter:
+    blur(1px)
+    drop-shadow(0 0 15px #a855f7)
+    drop-shadow(0 0 35px #ec4899)
+    drop-shadow(0 0 60px #06b6d4);
+}
+
+/* =========================
+   INNER DARK GLASS
+========================= */
+.card::after{
+  content: "";
+  position: absolute;
+
+  inset: 4px;
+
+  border-radius: 28px;
+
+  background: rgba(10,10,20,0.96);
+
+  z-index: -1;
+}
+
+/* =========================
+   CARD HOVER
+========================= */
+.card:hover{
+  transform: translateY(-10px) scale(1.03);
+
+  box-shadow:
+    0 0 30px #a855f7,
+    0 0 70px #ec4899,
+    0 0 120px rgba(59,130,246,0.9);
+}
+
+/* =========================
+   TITLE
+========================= */
+.title{
+  color: white;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.3;
+
+  margin-bottom: 10px;
+
+  text-shadow:
+    0 0 10px #a855f7,
+    0 0 25px #ec4899;
+}
+
+/* =========================
+   SUB TITLE
+========================= */
+.heading{
+  color: #d1d5db;
+  font-size: 20px;
   font-weight: 500;
-  color: var(--text-h);
+
+  margin-bottom: 35px;
+
+  letter-spacing: 1px;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+/* =========================
+   COUNTER NUMBER
+========================= */
+.count{
+  font-size: 95px;
+  font-weight: 800;
+  color: white;
+
+  margin-bottom: 40px;
+
+  text-shadow:
+    0 0 10px #a855f7,
+    0 0 25px #a855f7,
+    0 0 45px #ec4899,
+    0 0 80px #ec4899;
+
+  animation: float 2s ease-in-out infinite;
+}
+
+/* =========================
+   BUTTON AREA
+========================= */
+.btns{
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* =========================
+   COMMON BUTTON
+========================= */
+button{
+  padding: 14px 30px;
+
+  border: none;
+  border-radius: 14px;
+
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.35s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* =========================
+   BUTTON SHINE EFFECT
+========================= */
+button::before{
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: -120%;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(255,255,255,0.25);
+
+  transform: skewX(-25deg);
+
+  transition: 0.6s;
+}
+
+button:hover::before{
+  left: 120%;
+}
+
+/* =========================
+   INCREASE BUTTON
+========================= */
+.increase{
+  background: linear-gradient(
+    135deg,
+    #8b5cf6,
+    #ec4899
+  );
+
+  box-shadow:
+    0 0 15px #a855f7,
+    0 0 40px rgba(236,72,153,0.7);
+}
+
+.increase:hover{
+  transform: scale(1.1);
+
+  box-shadow:
+    0 0 20px #c084fc,
+    0 0 55px #ec4899,
+    0 0 90px rgba(236,72,153,1);
+}
+
+/* =========================
+   DECREASE BUTTON
+========================= */
+.decrease{
+  background: linear-gradient(
+    135deg,
+    #06b6d4,
+    #3b82f6
+  );
+
+  box-shadow:
+    0 0 15px #06b6d4,
+    0 0 40px rgba(59,130,246,0.7);
+}
+
+.decrease:hover{
+  transform: scale(1.1);
+
+  box-shadow:
+    0 0 20px #67e8f9,
+    0 0 55px #3b82f6,
+    0 0 90px rgba(59,130,246,1);
+}
+
+/* =========================
+   BUTTON CLICK
+========================= */
+button:active{
+  transform: scale(0.95);
+}
+
+/* =========================
+   BORDER ROTATION
+========================= */
+@keyframes rotateBorder{
+  0%{
+    transform: rotate(0deg);
+  }
+
+  100%{
+    transform: rotate(360deg);
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+/* =========================
+   FLOAT COUNTER
+========================= */
+@keyframes float{
+  0%,100%{
+    transform: translateY(0);
+  }
+
+  50%{
+    transform: translateY(-10px);
   }
 }
-p {
-  margin: 0;
+
+/* =========================
+   BACKGROUND MOVE
+========================= */
+@keyframes bgMove{
+  0%{
+    background-position: 0 0;
+  }
+
+  100%{
+    background-position: 400px 400px;
+  }
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* =========================
+   GLOW ANIMATION
+========================= */
+@keyframes glowMove{
+  0%{
+    transform: scale(1);
+  }
+
+  50%{
+    transform: scale(1.15);
+  }
+
+  100%{
+    transform: scale(1);
+  }
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-} */
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:500px){
+
+  .card{
+    width: 100%;
+    padding: 35px 25px;
+  }
+
+  .title{
+    font-size: 28px;
+  }
+
+  .count{
+    font-size: 75px;
+  }
+
+  .btns{
+    flex-direction: column;
+  }
+
+  button{
+    width: 100%;
+  }
+}
